@@ -35,16 +35,30 @@ public class CompareImage {
 			}
 
 			System.out.println("Are these Images Identical ?: " + java.util.Arrays.equals(data1, data2));
-			
+			float similarity = compare(data1, data2);
+			System.out.println("The similarity percent between the 2 images is: " + similarity);
 
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
 	}
 
-	
+	private static float compare(int[] data1, int[] data2) {
+		if (data1.length == data2.length) {
+			float totalPixelCount = data1.length;
+			float matchedPixelCount = 0;
+			for (int i = 0; i < data2.length; i++) {
+				if (data1[i] == data2[i])
+					matchedPixelCount++;
+			}
+			return matchedPixelCount / totalPixelCount * 100;
+		} else {
+			return 0;
+		}
+	}
 
 	public static void main(String args[]) {
-		processImage("/Users/feroz/Downloads/Images/what-the-world-needs-quote.jpg", "/Users/feroz/Downloads/Images/puffer.jpeg");
+		processImage("C:\\Users\\absin\\Downloads\\img_28136253.png",
+				"C:\\\\Users\\\\absin\\\\Downloads\\\\img_281362531.png");
 	}
 }
